@@ -1,8 +1,8 @@
 {
   "name": "coffee-script-brunch",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Adds CoffeeScript support to brunch.",
-  "author": "Brunch team (http://brunch.io)",
+  "author": "Paul Miller (http://paulmillr.com/)",
   "homepage": "https://github.com/brunch/coffee-script-brunch",
   "repository": {
     "type": "git",
