@@ -1,0 +1,26 @@
+{
+  "name": "coffee-script-brunch",
+  "version": "0.1.0",
+  "description": "Adds CoffeeScript support to brunch.",
+  "author": "Brunch team (http://brunch.io)",
+  "homepage": "https://github.com/brunch/coffee-script-brunch",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:brunch/coffee-script-brunch.git"
+  },
+  "main": "./lib/index",
+  "scripts": {
+    "postinstall": "./node_modules/coffee-script/bin/coffee -o lib/ src/",
+    "test": "./node_modules/mocha/bin/mocha --require test/common.js"
+  },
+  "engines": {
+    "node": "~0.6.10"
+  },
+  "dependencies": {
+    "coffee-script": "1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "0.12.1",
+    "expect.js": "0.1.2"
+  }
+}
