@@ -7,7 +7,7 @@ var execute = function(pathParts, params, callback) {
   if (callback == null) callback = function() {};
   var path = sysPath.join.apply(null, pathParts);
   var command = 'node ' + path + ' ' + params;
-  console.log(command)
+  console.log('Executing', command);
   exec(command, function(error, stdout, stderr) {
     if (error != null) return process.stderr.write('Error', stderr.toString());
     process.stdout.write(stdout.toString());
