@@ -20,15 +20,6 @@ module.exports = class CoffeeScriptCompiler
   brunchPlugin: yes
   type: 'javascript'
   extension: 'coffee'
-  generators:
-    backbone: do ->
-      types = {}
-      ['collection', 'model', 'router', 'view'].forEach (type) ->
-        parent = formatClassName type
-        types[type] = (fileName) ->
-          className = formatClassName fileName
-          "class exports.#{className} extends Backbone.#{parent}\n"
-      types
 
   constructor: (@config) ->
     null
