@@ -26,7 +26,7 @@ module.exports = class CoffeeScriptCompiler
         """module.exports = class #{formatClassName name} extends Backbone.Model"""
 
       view: (name) ->
-        """template = require './templates/#{name}'
+        """template = require 'views/templates/#{name}'
 
 module.exports = class #{formatClassName name}View extends Backbone.View
   template: template
@@ -35,21 +35,21 @@ module.exports = class #{formatClassName name}View extends Backbone.View
     chaplin:
       controller: (name) ->
         """Controller = require 'controllers/controller'
-#{} = 'models/#{name}'
-#{}View = require 'views/#{name}'
+#{formatClassName name} = 'models/#{name}'
+#{formatClassName name}View = require 'views/#{name}'
 
 module.exports = class #{formatClassName name}Controller extends Controller
   historyURL: ''
 """
       model: (name) ->
-        """Model = require './model'
+        """Model = require 'models/model'
 
 module.exports = class #{formatClassName name} extends Model
 """
 
       view: (name) ->
-        """View = require './view'
-template = require './templates/#{name}'
+        """View = require 'views/view'
+template = require 'views/templates/#{name}'
 
 module.exports = class #{formatClassName name}View extends View
   template: template
