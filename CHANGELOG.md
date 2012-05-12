@@ -1,4 +1,7 @@
-## coffee-script-brunch 1.2.0 (April 15, 2012)
+## coffee-script-brunch 1.2.1 (April 11, 2012)
+* Fixed typos & code style in chaplin generators.
+
+## coffee-script-brunch 1.2.0 (May 11, 2012)
 * Added support for chaplin generators, brought back backbone generators.
 
 ## coffee-script-brunch 1.1.1 (April 15, 2012)
