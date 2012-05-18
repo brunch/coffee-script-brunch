@@ -22,37 +22,68 @@ module.exports = class CoffeeScriptCompiler
   extension: 'coffee'
   generators:
     backbone:
-      model: (name) ->
-        """module.exports = class #{formatClassName name} extends Backbone.Model"""
+      model: (name, pluralName) ->
+        """module.exports = class #{formatClassName name} extends Backbone.Model
 
-      view: (name) ->
+"""
+
+      view: (name, pluralName) ->
         """template = require 'views/templates/#{name}'
 
 module.exports = class #{formatClassName name}View extends Backbone.View
   template: template
+
 """
 
     chaplin:
-      controller: (name) ->
+      controller: (name, pluralName) ->
         """Controller = require 'controllers/controller'
-#{formatClassName name} = 'models/#{name}'
-#{formatClassName name}View = require 'views/#{name}'
+#{formatClassName name} = require 'models/#{name}'
+#{formatClassName name}PageView = require 'views/#{name}_view'
 
-module.exports = class #{formatClassName name}Controller extends Controller
-  historyURL: ''
+module.exports = class #{formatClassName pluralName}Controller extends Controller
+  historyURL: '#{pluralName}'
+
+  show: (params) ->
+    @model = new #{formatClassName name}()
+    @view = new #{formatClassName name}PageView({@model})
+    @model.fetch()
+
 """
-      model: (name) ->
+
+      collection: (name, pluralName) ->
+        """Collection = require 'models/collection'
+#{formatClassName name} = require 'models/#{name}'
+
+module.exports = class #{formatClassName pluralName} extends Collection
+  model: #{formatClassName name}
+
+"""
+
+      model: (name, pluralName) ->
         """Model = require 'models/model'
 
 module.exports = class #{formatClassName name} extends Model
+
 """
 
-      view: (name) ->
+      view: (name, pluralName) ->
         """View = require 'views/view'
 template = require 'views/templates/#{name}'
 
 module.exports = class #{formatClassName name}View extends View
   template: template
+
+"""
+
+      collectionView: (name, pluralName) ->
+        """CollectionView = require 'chaplin/views/collection_view'
+#{formatClassName name} = require 'views/#{name}_view'
+
+module.exports = class #{formatClassName pluralName}View extends CollectionView
+  getView: (item) ->
+    new #{formatClassName name} model: item
+
 """
 
   constructor: (@config) ->
