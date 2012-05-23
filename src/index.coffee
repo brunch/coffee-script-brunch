@@ -36,7 +36,7 @@ module.exports = class #{formatClassName name}View extends Backbone.View
       controller: (name) ->
         """Controller = require 'controllers/controller'
 #{formatClassName name} = 'models/#{name}'
-#{formatClassName name}View = require 'views/#{name}'
+#{formatClassName name}View = require 'views/#{name}_view'
 
 module.exports = class #{formatClassName name}Controller extends Controller
   historyURL: ''
