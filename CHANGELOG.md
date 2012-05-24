@@ -1,4 +1,7 @@
-## coffee-script-brunch 1.2.1 (April 11, 2012)
+## coffee-script-brunch 1.2.2 (May 18, 2012)
+* Added `--plural` support to generators.
+
+## coffee-script-brunch 1.2.1 (May 11, 2012)
 * Fixed typos & code style in chaplin generators.
 
 ## coffee-script-brunch 1.2.0 (May 11, 2012)
