@@ -37,22 +37,14 @@ module.exports = class #{formatClassName name}View extends Backbone.View
 
     chaplin:
       controller: (name, pluralName) ->
-        """Controller = require 'controllers/controller'
-#{formatClassName name} = require 'models/#{name}'
-#{formatClassName name}PageView = require 'views/#{name}_view'
+        """Controller = require 'controllers/base/controller'
 
 module.exports = class #{formatClassName pluralName}Controller extends Controller
-  historyURL: '#{pluralName}'
-
-  show: (params) ->
-    @model = new #{formatClassName name}()
-    @view = new #{formatClassName name}PageView({@model})
-    @model.fetch()
 
 """
 
       collection: (name, pluralName) ->
-        """Collection = require 'models/collection'
+        """Collection = require 'models/base/collection'
 #{formatClassName name} = require 'models/#{name}'
 
 module.exports = class #{formatClassName pluralName} extends Collection
@@ -61,14 +53,14 @@ module.exports = class #{formatClassName pluralName} extends Collection
 """
 
       model: (name, pluralName) ->
-        """Model = require 'models/model'
+        """Model = require 'models/base/model'
 
 module.exports = class #{formatClassName name} extends Model
 
 """
 
       view: (name, pluralName) ->
-        """View = require 'views/view'
+        """View = require 'views/base/view'
 template = require 'views/templates/#{name}'
 
 module.exports = class #{formatClassName name}View extends View
@@ -76,8 +68,17 @@ module.exports = class #{formatClassName name}View extends View
 
 """
 
-      collectionView: (name, pluralName) ->
-        """CollectionView = require 'chaplin/views/collection_view'
+      'page-view': (name, pluralName) ->
+        """PageView = require 'views/base/page_view'
+template = require 'views/templates/#{name}_page'
+
+module.exports = class #{formatClassName name}PageView extends View
+  template: template
+
+"""
+
+      'collection-view': (name, pluralName) ->
+        """CollectionView = require 'views/base/collection_view'
 #{formatClassName name} = require 'views/#{name}_view'
 
 module.exports = class #{formatClassName pluralName}View extends CollectionView
