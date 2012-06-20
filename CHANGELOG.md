@@ -1,3 +1,7 @@
+## coffee-script-brunch 1.3.0 (June 20, 2012)
+* Updated CoffeeScript to 1.3.3.
+* Updated chaplin scaffolder templates.
+
 ## coffee-script-brunch 1.2.2 (May 18, 2012)
 * Added `--plural` support to generators.
 
