@@ -92,7 +92,7 @@ module.exports = class #{formatClassName pluralName}View extends CollectionView
 
   compile: (data, path, callback) ->
     try
-      result = coffeescript.compile data
+      result = coffeescript.compile data, bare: yes
     catch err
       error = err
     finally
