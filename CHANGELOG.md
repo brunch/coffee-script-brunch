@@ -1,3 +1,7 @@
+# coffee-script-brunch 1.3.2 (June 29, 2012)
+* Added node.js 0.8 and 0.9 support.
+* Package is now precompiled before every publishing to npm.
+
 # coffee-script-brunch 1.3.1 (June 21, 2012)
 * CoffeeScript is now compiled with --bare option (without wrapper).
 
