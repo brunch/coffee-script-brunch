@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/brunch/coffee-script-brunch.png)](http://travis-ci.org/brunch/coffee-script-brunch)
 ## coffee-script-brunch
 Adds [CoffeeScript](http://coffeescript.org) support to
 [brunch](http://brunch.io).
