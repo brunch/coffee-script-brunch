@@ -1,3 +1,6 @@
+# coffee-script-brunch 1.4.1 (November 26, 2012)
+* The plugin will now use latest coffeescript 1.x version.
+
 # coffee-script-brunch 1.4.0 (November 26, 2012)
 * Updated CoffeeScript to 1.4.0.
 * Removed generators.

@@ -1,6 +1,6 @@
 {
   "name": "coffee-script-brunch",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Adds CoffeeScript support to brunch.",
   "author": "Paul Miller (http://paulmillr.com/)",
   "homepage": "https://github.com/brunch/coffee-script-brunch",
@@ -18,7 +18,7 @@
     "node": "~0.6.10 || 0.8 || 0.9"
   },
   "dependencies": {
-    "coffee-script": "1.4.0"
+    "coffee-script": "1.x"
   },
   "devDependencies": {
     "mocha": "1.2.2",
