@@ -15,7 +15,7 @@ describe('Plugin', function() {
 
   it('should compile and produce valid result', function(done) {
     var content = 'a = 1';
-    var expected = '(function() {\n  var a;\n\n  a = 1;\n\n}).call(this);\n';
+    var expected = 'var a;\n\na = 1;\n';
 
     plugin.compile(content, 'file.coffee', function(error, data) {
       expect(error).not.to.be.ok;
