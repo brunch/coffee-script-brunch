@@ -1,3 +1,6 @@
+# coffee-script-brunch 1.5.0 (January 13, 2012)
+* Improved installation process.
+
 # coffee-script-brunch 1.4.1 (November 26, 2012)
 * The plugin will now use latest coffeescript 1.x version.
 
