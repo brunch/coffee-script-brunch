@@ -7,8 +7,7 @@ normalizeChecker = (item) ->
     when '[object Function]'
       item
     else
-      throw new Error("Config item #{item} is invalid.
-Use RegExp or Function.")
+      -> false
 
 module.exports = class CoffeeScriptCompiler
   brunchPlugin: yes
@@ -20,7 +19,7 @@ module.exports = class CoffeeScriptCompiler
 
   compile: (data, path, callback) ->
     try
-      normalizedVendor = normalizeChecker @config.conventions.vendor
+      normalizedVendor = normalizeChecker @config?.conventions?.vendor
       bare = not normalizedVendor path
       result = coffeescript.compile data, bare: bare
     catch err
