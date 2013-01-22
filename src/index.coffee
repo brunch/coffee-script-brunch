@@ -19,9 +19,9 @@ module.exports = class CoffeeScriptCompiler
     return
 
   compile: (data, path, callback) ->
-    normalizedVendor = normalizeChecker @config.conventions.vendor
-    bare = not normalizedVendor path
     try
+      normalizedVendor = normalizeChecker @config.conventions.vendor
+      bare = not normalizedVendor path
       result = coffeescript.compile data, bare: bare
     catch err
       error = err
