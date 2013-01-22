@@ -1,5 +1,14 @@
 coffeescript = require 'coffee-script'
 
+normalizeChecker = (item) ->
+  switch toString.call(item)
+    when '[object RegExp]'
+      (string) -> item.test string
+    when '[object Function]'
+      item
+    else
+      -> false
+
 module.exports = class CoffeeScriptCompiler
   brunchPlugin: yes
   type: 'javascript'
@@ -10,7 +19,9 @@ module.exports = class CoffeeScriptCompiler
 
   compile: (data, path, callback) ->
     try
-      result = coffeescript.compile data, bare: yes
+      normalizedVendor = normalizeChecker @config?.conventions?.vendor
+      bare = not normalizedVendor path
+      result = coffeescript.compile data, bare: bare
     catch err
       error = err
     finally
