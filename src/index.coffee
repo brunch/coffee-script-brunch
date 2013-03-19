@@ -21,7 +21,7 @@ module.exports = class CoffeeScriptCompiler
     try
       normalizedVendor = normalizeChecker @config?.conventions?.vendor
       bare = not normalizedVendor path
-      result = coffeescript.compile data, bare: bare
+      result = coffeescript.compile data, {bare}
     catch err
       error = err
     finally
