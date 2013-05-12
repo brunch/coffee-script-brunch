@@ -22,7 +22,7 @@ module.exports = class CoffeeScriptCompiler
       normalizedVendor = normalizeChecker @config?.conventions?.vendor
       bare = not normalizedVendor path
       sourceMap = @config.modules.addSourceUrls
-      result = coffeescript.compile data, { bare,sourceMap }
+      result = coffeescript.compile data, { bare,sourceMap,sourceFiles:[path] }
       if sourceMap
         result = {
           compiled : result.js,
