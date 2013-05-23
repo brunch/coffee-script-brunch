@@ -21,7 +21,7 @@ module.exports = class CoffeeScriptCompiler
     try
       normalizedVendor = normalizeChecker @config?.conventions?.vendor
       bare = not normalizedVendor path
-      sourceMap = @config.modules.addSourceUrls
+      sourceMap = @config.modules.sourceMaps
       result = coffeescript.compile data, {
         bare,
         sourceMap,
@@ -29,7 +29,7 @@ module.exports = class CoffeeScriptCompiler
       }
       if sourceMap
         result = {
-          compiled : result.js,
+          code : result.js,
           map : result.v3SourceMap
         }
     catch err
