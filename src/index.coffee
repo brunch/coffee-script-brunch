@@ -19,10 +19,18 @@ module.exports = class CoffeeScriptCompiler
 
   compile: (data, path, callback) ->
     bare = not @isVendor path
+    options =
+      bare: not @isVendor path
+      sourceMap: Boolean @config?.sourceMaps
+      sourceFiles: [path]
 
     try
-      result = coffeescript.compile data, {bare}
+      compiled = coffeescript.compile data, options
     catch err
       error = err
     finally
+      result = if compiled and options.sourceMap
+        code: compiled.js, map: compiled.v3SourceMap
+      else
+        compiled
       callback error, result
