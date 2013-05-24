@@ -15,12 +15,12 @@ module.exports = class CoffeeScriptCompiler
   extension: 'coffee'
 
   constructor: (@config) ->
-    return
+    @isVendor = normalizeChecker @config?.conventions?.vendor
 
   compile: (data, path, callback) ->
+    bare = not @isVendor path
+
     try
-      normalizedVendor = normalizeChecker @config?.conventions?.vendor
-      bare = not normalizedVendor path
       result = coffeescript.compile data, {bare}
     catch err
       error = err
