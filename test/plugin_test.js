@@ -23,4 +23,18 @@ describe('Plugin', function() {
       done();
     });
   });
+
+  it('should produce source maps', function(done) {
+    plugin = new Plugin({sourceMaps: true});
+
+    var content = 'a = 1';
+    var expected = 'var a;\n\na = 1;\n';
+
+    plugin.compile(content, 'file.coffee', function(error, data) {
+      expect(error).not.to.be.ok;
+      expect(data.code).to.equal(expected);
+      expect(data.map).to.be.a('string');
+      done();
+    });
+  });
 });
