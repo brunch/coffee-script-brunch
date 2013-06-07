@@ -13,6 +13,7 @@ module.exports = class CoffeeScriptCompiler
   brunchPlugin: yes
   type: 'javascript'
   extension: 'coffee'
+  pattern: /\.(coffee|coffee\.md|litcoffee)$/
 
   constructor: (@config) ->
     @isVendor = normalizeChecker @config?.conventions?.vendor
