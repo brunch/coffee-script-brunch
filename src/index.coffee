@@ -1,5 +1,8 @@
 coffeescript = require 'coffee-script'
 
+isLiterate = (path) ->
+  /\.(litcoffee|coffee\.md)$/.test(path)
+
 normalizeChecker = (item) ->
   switch toString.call(item)
     when '[object RegExp]'
@@ -13,6 +16,7 @@ module.exports = class CoffeeScriptCompiler
   brunchPlugin: yes
   type: 'javascript'
   extension: 'coffee'
+  pattern: /\.(coffee|coffee\.md|litcoffee)$/
 
   constructor: (@config) ->
     @isVendor = normalizeChecker @config?.conventions?.vendor
@@ -23,6 +27,7 @@ module.exports = class CoffeeScriptCompiler
       bare: not @isVendor path
       sourceMap: Boolean @config?.sourceMaps
       sourceFiles: [path]
+      literate: isLiterate path
 
     try
       compiled = coffeescript.compile data, options
