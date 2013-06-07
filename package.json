@@ -1,12 +1,12 @@
 {
   "name": "coffee-script-brunch",
-  "version": "1.5.2",
+  "version": "1.5.1",
   "description": "Adds CoffeeScript support to brunch.",
   "author": "Paul Miller (http://paulmillr.com/)",
-  "homepage": "https://github.com/huafu/coffee-script-brunch",
+  "homepage": "https://github.com/brunch/coffee-script-brunch",
   "repository": {
     "type": "git",
-    "url": "git@github.com:huafu/coffee-script-brunch.git"
+    "url": "git@github.com:brunch/coffee-script-brunch.git"
   },
   "main": "./lib/index",
   "scripts": {
