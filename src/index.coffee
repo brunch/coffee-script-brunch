@@ -1,5 +1,8 @@
 coffeescript = require 'coffee-script'
 
+isLiterate = (path) ->
+  !!path.metch /\.(litcoffee|coffee\.md)$/
+
 normalizeChecker = (item) ->
   switch toString.call(item)
     when '[object RegExp]'
@@ -24,6 +27,7 @@ module.exports = class CoffeeScriptCompiler
       bare: not @isVendor path
       sourceMap: Boolean @config?.sourceMaps
       sourceFiles: [path]
+      literate: isLiterate path
 
     try
       compiled = coffeescript.compile data, options
