@@ -1,7 +1,7 @@
 coffeescript = require 'coffee-script'
 
 isLiterate = (path) ->
-  !!path.metch /\.(litcoffee|coffee\.md)$/
+  /\.(litcoffee|coffee\.md)$/.test(path)
 
 normalizeChecker = (item) ->
   switch toString.call(item)
