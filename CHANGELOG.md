@@ -1,3 +1,6 @@
+# coffee-script-brunch 1.7.0 (22 June 2013)
+* Added source maps support.
+
 # coffee-script-brunch 1.5.1 (19 March 2013)
 * Added node 0.10 support.
 
