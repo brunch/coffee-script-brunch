@@ -1,3 +1,6 @@
+# coffee-script-brunch 1.7.1 (15 July 2013)
+* Updated to new compiler API.
+
 # coffee-script-brunch 1.7.0 (22 June 2013)
 * Added source maps support.
 
