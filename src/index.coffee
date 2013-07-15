@@ -35,7 +35,8 @@ module.exports = class CoffeeScriptCompiler
       error = err
     finally
       result = if compiled and options.sourceMap
-        code: compiled.js, map: compiled.v3SourceMap
+        data: compiled.js,
+        map: compiled.v3SourceMap
       else
-        compiled
+        data: compiled
       callback error, result
