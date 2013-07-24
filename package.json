@@ -21,6 +21,6 @@
     "chai": "1.7.0"
   },
   "peerDependencies": {
-    "brunch": "~1.7"
+    "brunch": ">= 1.7.0 < 2"
   }
 }
