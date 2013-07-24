@@ -32,8 +32,12 @@ module.exports = class CoffeeScriptCompiler
     try
       compiled = coffeescript.compile data, options
     catch err
-      error = "#{err.location.first_line}:#{err.location.first_column} #{err.toString()}"
+      error = if err.location?
+        "#{err.location.first_line}:#{err.location.first_column} #{err.toString()}"
+      else
+        err.toString()
     finally
+      return callback error if error?
       result = if compiled and options.sourceMap
         data: compiled.js,
         map: compiled.v3SourceMap
