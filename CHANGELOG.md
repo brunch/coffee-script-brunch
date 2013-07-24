@@ -1,3 +1,6 @@
+# coffee-script-brunch 1.7.2 (24 July 2013)
+* I,proved error handling.
+
 # coffee-script-brunch 1.7.1 (15 July 2013)
 * Updated to new compiler API.
 
