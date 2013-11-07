@@ -19,7 +19,7 @@ describe('Plugin', function() {
 
     plugin.compile(content, 'file.coffee', function(error, data) {
       expect(error).not.to.be.ok;
-      expect(data).to.equal(expected)
+      expect(data.data).to.equal(expected)
       done();
     });
   });
@@ -31,7 +31,7 @@ describe('Plugin', function() {
 
     plugin.compile(content, 'file.litcoffee', function(error, data) {
       expect(error).not.to.be.ok;
-      expect(data).to.equal(expected)
+      expect(data.data).to.equal(expected)
       done();
     });
   });
@@ -44,7 +44,7 @@ describe('Plugin', function() {
 
     plugin.compile(content, 'file.coffee', function(error, data) {
       expect(error).not.to.be.ok;
-      expect(data.code).to.equal(expected);
+      expect(data.data).to.equal(expected);
       expect(data.map).to.be.a('string');
       done();
     });
