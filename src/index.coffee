@@ -22,9 +22,11 @@ module.exports = class CoffeeScriptCompiler
     @isVendor = normalizeChecker @config?.conventions?.vendor
 
   compile: (data, path, callback) ->
-    bare = not @isVendor path
+    bare = @config?.plugins?.coffeescript?.bare
+    # Use this vendor test only if bare isn't explicitly set
+    bare ?= not @isVendor path
     options =
-      bare: not @isVendor path
+      bare: bare
       sourceMap: Boolean @config?.sourceMaps
       sourceFiles: [path]
       literate: isLiterate path
