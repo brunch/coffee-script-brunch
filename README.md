@@ -2,7 +2,7 @@
 Adds [CoffeeScript](http://coffeescript.org) support to
 [brunch](http://brunch.io).
 
-## Usage
+## Installation
 Install the plugin via npm with `npm install --save coffee-script-brunch`.
 
 Or, do manual install:
@@ -11,6 +11,17 @@ Or, do manual install:
   Pick a plugin version that corresponds to your minor (y) brunch version.
 * If you want to use git version of plugin, add
 `"coffee-script-brunch": "git+ssh://git@github.com:brunch/coffee-script-brunch.git"`.
+
+## Configuration
+You can set the `--bare` option in your brunch config (such as `brunch-config.coffee`):
+
+```coffee
+exports.config =
+  ...
+  plugins:
+    coffeescript:
+      bare: true
+```
 
 ## License
 
