@@ -24,7 +24,7 @@ module.exports = class CoffeeScriptCompiler
   compile: (data, path, callback) ->
     bare = @config?.plugins?.coffeescript?.bare
     # Use this vendor test only if bare isn't explicitly set
-    bare = not @isVendor path unless bare?
+    bare ?= not @isVendor path
     options =
       bare: bare
       sourceMap: Boolean @config?.sourceMaps
