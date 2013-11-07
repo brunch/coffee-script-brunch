@@ -1,3 +1,6 @@
+# coffee-script-brunch 1.7.3 (7 November 2013)
+* Added config setting using coffeescript's `--bare` option.
+
 # coffee-script-brunch 1.7.2 (24 July 2013)
 * Improved error handling.
 
