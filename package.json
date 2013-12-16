@@ -9,7 +9,7 @@
     "url": "git@github.com:brunch/coffee-script-brunch.git"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha --require test/common.js"
+    "test": "node_modules/.bin/mocha"
   },
   "dependencies": {
     "coffee-script": "~1.6.3"
