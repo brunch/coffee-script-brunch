@@ -8,9 +8,7 @@
     "type": "git",
     "url": "git@github.com:brunch/coffee-script-brunch.git"
   },
-  "main": "./lib/index",
   "scripts": {
-    "prepublish": "rm -rf lib && coffee --bare --output lib/ src/",
     "test": "node_modules/.bin/mocha --require test/common.js"
   },
   "dependencies": {
