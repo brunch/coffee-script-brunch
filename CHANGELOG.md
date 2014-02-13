@@ -1,3 +1,6 @@
+# coffee-script-brunch 1.8.0 (13 February 2014)
+* Updated CoffeeScript to 1.7.x.
+
 # coffee-script-brunch 1.7.3 (7 November 2013)
 * Added config setting using coffeescript's `--bare` option.
 
