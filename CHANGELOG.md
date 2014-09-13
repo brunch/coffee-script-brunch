@@ -1,3 +1,6 @@
+# coffee-script-brunch 1.8.1 (13 September 2014)
+* Updated CoffeeScript to 1.8.x.
+
 # coffee-script-brunch 1.8.0 (13 February 2014)
 * Updated CoffeeScript to 1.7.x.
 
