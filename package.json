@@ -12,7 +12,7 @@
     "test": "node_modules/.bin/mocha"
   },
   "dependencies": {
-    "coffee-script": "~1.9.0"
+    "coffee-script": "~1.10.0"
   },
   "devDependencies": {
     "mocha": "1.11.0",
