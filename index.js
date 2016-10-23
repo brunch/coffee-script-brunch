@@ -25,9 +25,8 @@ class CoffeeScriptCompiler {
     this.isVendor = normalizeChecker(conv);
   }
 
-  compile(params) {
-    const data = params.data;
-    const path = params.path;
+  compile(file) {
+    const path = file.path;
 
     const options = {
       bare: this.bare == null ? !this.isVendor(path) : this.bare,
@@ -38,7 +37,7 @@ class CoffeeScriptCompiler {
 
     let compiled;
     try {
-      compiled = coffeescript.compile(data, options);
+      compiled = coffeescript.compile(file.data, options);
     } catch (err) {
       const loc = err.location;
       let error;
