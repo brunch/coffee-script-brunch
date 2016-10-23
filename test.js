@@ -1,72 +1,102 @@
-var expect = require('chai').expect;
-var Plugin = require('./');
+'use strict';
 
-describe('Plugin', function() {
-  var plugin;
+const expect = require('chai').expect;
+const CoffeeCompiler = require('./');
 
-  beforeEach(function() {
-    plugin = new Plugin({});
+describe('coffee-script-brunch', () => {
+  const path = 'file.coffee';
+  let plugin;
+
+  beforeEach(() => {
+    plugin = new CoffeeCompiler({
+      conventions: {},
+      plugins: {},
+    });
   });
 
-  it('should be an object', function() {
-    expect(plugin).to.be.ok;
+  it('should be an object', () => {
+    expect(plugin).to.be.an.instanceof(CoffeeCompiler);
   });
 
-  it('should has #compile method', function() {
-    expect(plugin.compile).to.be.an.instanceof(Function);
+  it('should have #compile method', () => {
+    expect(plugin).to.respondTo('compile');
   });
 
-  it('should compile and produce valid result', function(done) {
-    var content = 'a = 1';
-    var expected = 'var a;\n\na = 1;\n';
+  it('should compile and produce valid result', () => {
+    const data = 'a = 1';
+    const expected = 'var a;\n\na = 1;\n';
 
-    plugin.compile({data: content, path: 'file.coffee'}).then(data => {
-      expect(data.data).to.equal(expected);
-      done();
-    }, error => expect(error).not.to.be.ok);
+    return plugin.compile({data, path}).then(file => {
+      expect(file.data).to.equal(expected);
+    });
   });
 
-  it('should compile literal source and produce valid result', function(done)
-  {
-    var content = 'I am a literal string\n\n    a = 1';
-    var expected = 'var a;\n\na = 1;\n';
+  it('should compile literal source and produce valid result', () => {
+    const data = 'I am a literal string\n\n    a = 1';
+    const path = 'file.litcoffee';
+    const expected = 'var a;\n\na = 1;\n';
 
-    plugin.compile({data: content, path: 'file.litcoffee'}).then(data => {
-      expect(data.data).to.equal(expected);
-      done();
-    }, error => expect(error).not.to.be.ok);
+    return plugin.compile({data, path}).then(file => {
+      expect(file.data).to.equal(expected);
+    });
   });
 
-  it('should produce source maps', function(done) {
-    plugin = new Plugin({sourceMaps: true});
+  it('should produce source maps', () => {
+    plugin = new CoffeeCompiler({
+      conventions: {},
+      plugins: {},
+      sourceMaps: true,
+    });
 
-    var content = 'a = 1';
-    var expected = 'var a;\n\na = 1;\n';
+    const data = 'a = 1';
+    const expected = 'var a;\n\na = 1;\n';
 
-    plugin.compile({data: content, path: 'file.coffee'}).then(data => {
-      expect(data.data).to.equal(expected);
-      expect(data.map).to.be.a('string');
-      done();
-    }, error => expect(error).not.to.be.ok);
+    return plugin.compile({data, path}).then(file => {
+      expect(file.data).to.equal(expected);
+      expect(file.map).to.be.a('string');
+    });
   });
 
-  it('should support explicit bare setting', function(done) {
-    plugin = new Plugin({plugins:{coffeescript:{bare:false}}});
+  it('should produce inline source maps', () => {
+    plugin = new CoffeeCompiler({
+      conventions: {},
+      plugins: {},
+      sourceMaps: 'inline',
+    });
 
-    var content = 'a = 1';
-    var expected = '(function() {\n  var a;\n\n  a = 1;\n\n}).call(this);\n';
+    const data = 'a = 1';
 
-    plugin.compile({data: content, path: 'file.coffee'}).then(data => {
-      expect(data.data).to.equal(expected);
+    return plugin.compile({data, path}).then(file => {
+      expect(file.data).to
+        .include(data)
+        .include('//# sourceMappingURL=data:application/json;base64,')
+        .include(`//# sourceURL=${path}`);
+    });
+  });
 
-      plugin = new Plugin({plugins:{coffeescript:{bare:true}}});
-      content = 'a = 1';
+  it('should support explicit bare setting', () => {
+    plugin = new CoffeeCompiler({
+      conventions: {},
+      plugins: {coffeescript: {bare: false}},
+    });
+
+    let data = 'a = 1';
+    let expected = '(function() {\n  var a;\n\n  a = 1;\n\n}).call(this);\n';
+
+    return plugin.compile({data, path}).then(file => {
+      expect(file.data).to.equal(expected);
+
+      plugin = new CoffeeCompiler({
+        conventions: {},
+        plugins: {coffeescript: {bare: true}},
+      });
+
+      data = 'a = 1';
       expected = 'var a;\n\na = 1;\n';
 
-      plugin.compile({data: content, path: 'file.coffee'}).then(data => {
-        expect(data.data).to.equal(expected);
-        done();
-      }, error => expect(error).not.to.be.ok);
-    }, error => expect(error).not.to.be.ok);
+      return plugin.compile({data, path}).then(file => {
+        expect(file.data).to.equal(expected);
+      });
+    });
   });
 });

@@ -1,67 +1,59 @@
 'use strict';
 
-const coffeescript = require('coffee-script');
+const coffee = require('coffee-script');
+const normalizeChecker = checker => {
+  if (typeof checker === 'function') return checker;
+  if (checker instanceof RegExp) return path => checker.test(path);
 
-const isLiterate = path => /\.(litcoffee|coffee\.md)$/.test(path);
-
-const normalizeChecker = item => {
-  switch (toString.call(item)) {
-    case '[object RegExp]':
-      return string => item.test(string);
-    case '[object Function]':
-      return item;
-    default:
-      return () => false;
-  }
+  return () => false;
 };
 
 class CoffeeScriptCompiler {
   constructor(config) {
-    if (config == null) config = {};
-    const plugin = config.plugins && config.plugins.coffeescript || {};
-    const conv = config.conventions && config.conventions.vendor;
+    const plugin = config.plugins.coffeescript || {};
     this.bare = plugin.bare;
-    this.sourceMaps = !!config.sourceMaps;
-    this.isVendor = normalizeChecker(conv);
+    this.sourceMaps = config.sourceMaps;
+    this.isVendor = normalizeChecker(config.conventions.vendor);
   }
 
   compile(file) {
+    const data = file.data;
     const path = file.path;
 
     const options = {
-      bare: this.bare == null ? !this.isVendor(path) : this.bare,
-      sourceMap: this.sourceMaps,
+      filename: path,
       sourceFiles: [path],
-      literate: isLiterate(path)
+      bare: this.bare == null ? !this.isVendor(path) : this.bare,
+      literate: coffee.helpers.isLiterate(path),
     };
 
-    let compiled;
+    if (this.sourceMaps === 'inline') {
+      options.inlineMap = true;
+    } else if (this.sourceMaps) {
+      options.sourceMap = true;
+    }
+
     try {
-      compiled = coffeescript.compile(file.data, options);
+      var compiled = coffee.compile(data, options);
     } catch (err) {
       const loc = err.location;
-      let error;
-      if (loc) {
-        error = loc.first_line + ':' + loc.first_column + ' ' + (err.toString());
-      } else {
-        error = err.toString();
-      }
-      console.log('rejecting for', error);
-      return Promise.reject(error);
+      const message = loc ?
+        `${loc.first_line}:${loc.first_column} ${err}` :
+        `${err}`;
+
+      return Promise.reject(message);
     }
-    const result = (options.sourceMap && typeof compiled === 'object') ? {
-      data: compiled.js,
-      map: compiled.v3SourceMap
-    } : {
-      data: compiled
-    };
+
+    const result = typeof compiled === 'string' ?
+      {data: compiled} :
+      {data: compiled.js, map: compiled.v3SourceMap};
+
     return Promise.resolve(result);
   }
 }
 
 CoffeeScriptCompiler.prototype.brunchPlugin = true;
 CoffeeScriptCompiler.prototype.type = 'javascript';
-CoffeeScriptCompiler.prototype.extension = 'coffee';
 CoffeeScriptCompiler.prototype.pattern = /\.(coffee(\.md)?|litcoffee)$/;
 
 module.exports = CoffeeScriptCompiler;
