@@ -1,3 +1,6 @@
+# coffee-script-brunch 2.0.0 (Jan 29, 2016)
+* Updated source code & API. The plugin would now only work with Brunch 2.2 and higher.
+
 # coffee-script-brunch 1.8.3 (2 October 2015)
 * Updated CoffeeScript to 1.10.x.
 
