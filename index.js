@@ -12,8 +12,8 @@ class CoffeeScriptCompiler {
   constructor(config) {
     const plugin = config.plugins.coffeescript || {};
     this.bare = plugin.bare;
-    this.sourceMaps = !!config.sourceMaps;
     this.header = plugin.header;
+    this.sourceMaps = config.sourceMaps;
     this.isVendor = normalizeChecker(config.conventions.vendor);
   }
 
@@ -26,6 +26,12 @@ class CoffeeScriptCompiler {
       bare: this.bare == null ? !this.isVendor(path) : this.bare,
       header: this.header,
     };
+
+    if (this.sourceMaps === 'inline') {
+      options.inlineMap = true;
+    } else if (this.sourceMaps) {
+      options.sourceMap = true;
+    }
 
     try {
       var compiled = compile(data, options);
