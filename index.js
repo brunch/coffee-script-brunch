@@ -13,6 +13,7 @@ class CoffeeScriptCompiler {
     const plugin = config.plugins.coffeescript || {};
     this.bare = plugin.bare;
     this.sourceMaps = !!config.sourceMaps;
+    this.header = plugin.header;
     this.isVendor = normalizeChecker(config.conventions.vendor);
   }
 
@@ -23,6 +24,7 @@ class CoffeeScriptCompiler {
     const options = {
       filename: path,
       bare: this.bare == null ? !this.isVendor(path) : this.bare,
+      header: this.header,
     };
 
     try {
