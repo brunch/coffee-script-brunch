@@ -1,6 +1,7 @@
 'use strict';
 
 const compile = require('coffee-script').compile;
+const isLiterate = path => /\.(coffee\.md|litcoffee)$/.test(path);
 const normalizeChecker = checker => {
   if (typeof checker === 'function') return checker;
   if (checker instanceof RegExp) return path => checker.test(path);
@@ -23,8 +24,10 @@ class CoffeeScriptCompiler {
 
     const options = {
       filename: path,
+      sourceFiles: [path],
       bare: this.bare == null ? !this.isVendor(path) : this.bare,
       header: this.header,
+      literate: isLiterate(path),
     };
 
     if (this.sourceMaps === 'inline') {
