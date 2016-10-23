@@ -9,7 +9,7 @@
     "url": "git@github.com:brunch/coffee-script-brunch.git"
   },
   "scripts": {
-    "test": "eslint index.js && mocha"
+    "test": "eslint index.js && eslint --env=mocha test.js && mocha"
   },
   "dependencies": {
     "coffee-script": "~1.11.0"

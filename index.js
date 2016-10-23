@@ -1,6 +1,6 @@
 'use strict';
 
-const compile = require('coffee-script').compile;
+const coffeescript = require('coffee-script');
 const isLiterate = path => /\.(coffee\.md|litcoffee)$/.test(path);
 const normalizeChecker = checker => {
   if (typeof checker === 'function') return checker;
@@ -13,7 +13,6 @@ class CoffeeScriptCompiler {
   constructor(config) {
     const plugin = config.plugins.coffeescript || {};
     this.bare = plugin.bare;
-    this.header = plugin.header;
     this.sourceMaps = config.sourceMaps;
     this.isVendor = normalizeChecker(config.conventions.vendor);
   }
@@ -26,7 +25,6 @@ class CoffeeScriptCompiler {
       filename: path,
       sourceFiles: [path],
       bare: this.bare == null ? !this.isVendor(path) : this.bare,
-      header: this.header,
       literate: isLiterate(path),
     };
 
@@ -37,7 +35,7 @@ class CoffeeScriptCompiler {
     }
 
     try {
-      var compiled = compile(data, options);
+      var compiled = coffeescript.compile(data, options);
     } catch (err) {
       const loc = err.location;
       const message = loc ?
