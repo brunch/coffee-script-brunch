@@ -14,7 +14,7 @@
     "dot-location": [2, "property"],
     "camelcase": [1, {"properties": "always"}],
     "comma-spacing": [2, {"before": false, "after": true}],
-    "comma-dangle": [2, "never"],
+    "comma-dangle": [2, "always-multiline"],
     "semi-spacing": [2, {"before": false, "after": true}],
     "curly": [2, "multi-line", "consistent"],
     "no-debugger": 2,
