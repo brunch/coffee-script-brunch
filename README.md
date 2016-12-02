@@ -3,7 +3,7 @@ Adds [CoffeeScript](http://coffeescript.org) support to
 [brunch](http://brunch.io).
 
 ## Installation
-Install the plugin via npm with `npm install --save coffee-script-brunch`.
+Install the plugin via npm with `npm install --save-dev coffee-script-brunch`.
 
 Or, do manual install:
 
