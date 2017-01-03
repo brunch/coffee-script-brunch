@@ -17,6 +17,10 @@
   "devDependencies": {
     "mocha": "^3.0",
     "chai": "^3.5",
-    "eslint": "^3.0"
+    "eslint": "^3.0",
+    "eslint-config-brunch": "brunch/eslint-config-brunch"
+  },
+  "eslintConfig": {
+    "extends": "brunch"
   }
 }
