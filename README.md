@@ -1,33 +1,37 @@
-## coffee-script-brunch
-Adds [CoffeeScript](http://coffeescript.org) support to
-[brunch](http://brunch.io).
+# coffee-script-brunch
+
+Adds [CoffeeScript](http://coffeescript.org) support to [brunch](http://brunch.io).
 
 ## Installation
+
 Install the plugin via npm with `npm install --save-dev coffee-script-brunch`.
 
 Or, do manual install:
 
-* Add `"coffee-script-brunch": "x.y.z"` to `package.json` of your brunch app.
-  Pick a plugin version that corresponds to your minor (y) brunch version.
+* Add `"coffee-script-brunch": "x.y.z"` to `package.json` of your brunch app. Pick a plugin version that corresponds to your minor (y) brunch version.
 * If you want to use git version of plugin, add
 `"coffee-script-brunch": "git+ssh://git@github.com:brunch/coffee-script-brunch.git"`.
 
 ## Configuration
-You can set the `--bare` option in your brunch config (such as `brunch-config.coffee`):
 
-```coffee
-exports.config =
-  ...
-  plugins:
-    coffeescript:
+You can set the `--bare` option in your brunch config (such as `brunch-config.js`):
+
+```js
+modules.exports = {
+  // ...
+  plugins: {
+    coffeescript: {
       bare: true
+    }
+  }
+};
 ```
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2012-2013 Paul Miller (http://paulmillr.com)
+Copyright (c) 2012-2017 Paul Miller (http://paulmillr.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
