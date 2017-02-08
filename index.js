@@ -37,11 +37,12 @@ class CoffeeScriptCompiler {
       var compiled = coffee.compile(data, options);
     } catch (err) {
       const loc = err.location;
-      const message = loc ?
-        `${loc.first_line}:${loc.first_column} ${err}` :
-        `${err}`;
+      if (loc) {
+        err.line = loc.first_line + 1;
+        err.col = loc.first_column + 1;
+      }
 
-      return Promise.reject(message);
+      return Promise.reject(err);
     }
 
     const result = typeof compiled === 'string' ?
