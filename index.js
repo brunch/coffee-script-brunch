@@ -7,6 +7,18 @@ const normalizeChecker = checker => {
 
   return () => false;
 };
+const formatError = err => {
+  // console.log(err.message);
+  const loc = err.location;
+  let msg = `${err.name}: ${err.message}\n${err.code}`;
+  if (loc) {
+    msg = `L${loc.first_line + 1}:${loc.first_column + 1} ${msg}`;
+  }
+  const error = new Error(msg);
+  error.name = '';
+  error.stack = err.stack;
+  return error;
+};
 
 class CoffeeScriptCompiler {
   constructor(config) {
@@ -19,6 +31,7 @@ class CoffeeScriptCompiler {
   compile(file) {
     const data = file.data;
     const path = file.path;
+    let compiled;
 
     const options = {
       filename: path,
@@ -34,15 +47,9 @@ class CoffeeScriptCompiler {
     }
 
     try {
-      var compiled = coffee.compile(data, options);
+      compiled = coffee.compile(data, options);
     } catch (err) {
-      const loc = err.location;
-      if (loc) {
-        err.line = loc.first_line + 1;
-        err.col = loc.first_column + 1;
-      }
-
-      return Promise.reject(err);
+      return Promise.reject(formatError(err));
     }
 
     const result = typeof compiled === 'string' ?
