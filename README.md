@@ -14,7 +14,7 @@ Or, do manual install:
 
 ## Configuration
 
-You can set the `--bare` option in your brunch config (such as `brunch-config.js`):
+You can set the `bare` option in your brunch config (such as `brunch-config.js`):
 
 ```js
 modules.exports = {
