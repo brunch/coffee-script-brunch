@@ -1,6 +1,6 @@
 # coffee-script-brunch
 
-Adds [CoffeeScript](http://coffeescript.org) support to [brunch](http://brunch.io).
+Adds [CoffeeScript](http://coffeescript.org) support to [Brunch](http://brunch.io).
 
 ## Installation
 
