@@ -1,6 +1,6 @@
 'use strict';
 
-const coffee = require('coffee-script');
+const coffee = require('coffeescript');
 const normalizeChecker = checker => {
   if (typeof checker === 'function') return checker;
   if (checker instanceof RegExp) return path => checker.test(path);

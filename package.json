@@ -1,6 +1,6 @@
 {
-  "name": "coffee-script-brunch",
-  "version": "2.10.2",
+  "name": "coffeescript-brunch",
+  "version": "2.10.3",
   "description": "Adds CoffeeScript support to brunch.",
   "author": "Paul Miller (http://paulmillr.com/)",
   "homepage": "https://github.com/brunch/coffee-script-brunch",
@@ -12,7 +12,7 @@
     "test": "eslint index.js && eslint --env=mocha test.js && mocha"
   },
   "dependencies": {
-    "coffee-script": "~1.12.6"
+    "coffeescript": "~2.3.1"
   },
   "devDependencies": {
     "mocha": "^3.0",

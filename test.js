@@ -34,7 +34,7 @@ describe('coffee-script-brunch', () => {
   it('should compile literal source and produce valid result', () => {
     const data = 'I am a literal string\n\n    a = 1';
     const path = 'file.litcoffee';
-    const expected = 'var a;\n\na = 1;\n';
+    const expected = '// I am a literal string\nvar a;\n\na = 1;\n';
 
     return plugin.compile({data, path}).then(file => {
       expect(file.data).to.equal(expected);
