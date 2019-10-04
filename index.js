@@ -24,6 +24,7 @@ class CoffeeScriptCompiler {
   constructor(config) {
     const plugin = config.plugins.coffeescript || {};
     this.bare = plugin.bare;
+    this.transpile = plugin.transpile;
     this.sourceMaps = config.sourceMaps;
     this.isVendor = normalizeChecker(config.conventions.vendor);
   }
@@ -39,6 +40,13 @@ class CoffeeScriptCompiler {
       bare: this.bare == null ? !this.isVendor(path) : this.bare,
       literate: coffee.helpers.isLiterate(path),
     };
+
+    if (this.transpile) {
+      options.transpile = {filename: path};
+      if (typeof this.transpile === 'object') {
+        Object.assign(options.transpile, this.transpile);
+      }
+    }
 
     if (this.sourceMaps === 'inline') {
       options.inlineMap = true;

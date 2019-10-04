@@ -99,4 +99,29 @@ describe('coffee-script-brunch', () => {
       });
     });
   });
+
+  it('should support transpile settings', () => {
+    plugin = new CoffeeCompiler({
+      conventions: {},
+      plugins: {coffeescript: {transpile: false}},
+    });
+
+    const data = 'a = () => {};';
+    let expected = 'var a;\n\na = () => {\n  return {};\n};\n';
+
+    return plugin.compile({data, path}).then(file => {
+      expect(file.data).to.equal(expected);
+
+      plugin = new CoffeeCompiler({
+        conventions: {},
+        plugins: {coffeescript: {transpile: {plugins: ['@babel/plugin-transform-arrow-functions']}}},
+      });
+
+      expected = 'var a;\n\na = function () {\n  return {};\n};';
+
+      return plugin.compile({data, path}).then(file => {
+        expect(file.data).to.equal(expected);
+      });
+    });
+  });
 });
