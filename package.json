@@ -17,7 +17,7 @@
   "devDependencies": {
     "mocha": "^3.0",
     "chai": "^3.5",
-    "eslint": "^3.0",
+    "eslint": "^6.6",
     "eslint-config-brunch": "^1"
   },
   "eslintConfig": {
