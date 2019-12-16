@@ -11,7 +11,9 @@
   "scripts": {
     "test": "eslint index.js && eslint --env=mocha test.js && mocha"
   },
-  "files": ["index.js"],
+  "files": [
+    "index.js"
+  ],
   "dependencies": {
     "coffeescript": "~2.4.1"
   },
