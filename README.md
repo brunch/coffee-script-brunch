@@ -1,16 +1,10 @@
 # coffee-script-brunch
 
-Adds [CoffeeScript](http://coffeescript.org) support to [Brunch](https://brunch.io).
+Adds [CoffeeScript](https://coffeescript.org) support to [Brunch](https://brunch.io).
 
 ## Installation
 
-Install the plugin via npm with `npm install coffee-script-brunch`.
-
-Or, do manual install:
-
-* Add `"coffee-script-brunch": "x.y.z"` to `package.json` of your brunch app.
-* If you want to use git version of plugin, add
-`"coffee-script-brunch": "brunch/coffee-script-brunch"`.
+Install the plugin via npm with `npm install -S coffee-script-brunch`.
 
 ## Configuration
 
