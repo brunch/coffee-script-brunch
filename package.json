@@ -1,6 +1,6 @@
 {
   "name": "coffee-script-brunch",
-  "version": "4.0.0-pre",
+  "version": "4.0.0",
   "description": "Adds CoffeeScript support to brunch.",
   "author": "Paul Miller (https://paulmillr.com/)",
   "homepage": "https://github.com/brunch/coffee-script-brunch",
