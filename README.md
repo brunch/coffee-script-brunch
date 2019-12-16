@@ -27,6 +27,24 @@ modules.exports = {
 };
 ```
 
+[Transpilation](http://coffeescript.org/#transpilation) is also supported. You
+can set `transpile` to `true` to let babel find its configuration in the normal
+way or you can pass a configuration directly. Make sure you have `@babel/core`
+and any relevant plugins installed.
+
+```js
+modules.exports = {
+  // ...
+  plugins: {
+    coffeescript: {
+      transpile: true,
+      // or:
+      // transpile: {presets: ["@babel/env"]}
+    }
+  }
+};
+```
+
 ## License
 
 The MIT License
